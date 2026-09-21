@@ -1,0 +1,7 @@
+image:
+  repository: ghcr.io/teaglebuilt/model-factory
+  tag: latest
+namespace: ai
+serviceAccount:
+  create: true
+  name: model-factory

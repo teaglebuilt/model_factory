@@ -1,0 +1,4 @@
+name: smoke
+tasks:
+  - perplexity-sample
+  - code-generation-smoke

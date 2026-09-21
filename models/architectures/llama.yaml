@@ -1,0 +1,5 @@
+family: llama
+implementation: torchtitan
+attention: causal
+normalization: rmsnorm
+position_encoding: rope
