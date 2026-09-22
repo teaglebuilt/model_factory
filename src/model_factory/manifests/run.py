@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
+
 from pydantic import BaseModel, Field
+
+from model_factory.contracts.datasets import ResolvedDatasetRef
 
 
 class RunManifest(BaseModel):
@@ -10,7 +13,7 @@ class RunManifest(BaseModel):
     experiment_hash: str
     git_sha: str | None = None
     container_digest: str | None = None
-    dataset_ref: str
+    datasets: dict[str, ResolvedDatasetRef]
     tokenizer: str
     architecture: str
     seed: int
