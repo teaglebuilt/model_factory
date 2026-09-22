@@ -6,11 +6,14 @@ from typing import Literal
 import yaml
 from pydantic import BaseModel, Field
 
+from model_factory.contracts.datasets import DatasetRef
+from model_factory.preparation.specs import PreparationSpec
 
-class DatasetRef(BaseModel):
-    repository: str
-    ref: str
-    path: str
+
+class ExperimentDatasets(BaseModel):
+    pretraining: DatasetRef
+    instruction: DatasetRef | None = None
+    evaluation: DatasetRef | None = None
 
 
 class TokenizerSpec(BaseModel):
@@ -49,6 +52,7 @@ class CheckpointSpec(BaseModel):
 class TrainingSpec(BaseModel):
     backend: str = "torchtitan"
     seed: int = 42
+    max_steps: int | None = None
     batch_size: int = 8
     gradient_accumulation_steps: int = 8
     optimizer: OptimizerSpec = Field(default_factory=OptimizerSpec)
@@ -59,7 +63,6 @@ class TrainingSpec(BaseModel):
 class FineTuneSpec(BaseModel):
     enabled: bool = False
     backend: str = "trl"
-    dataset: DatasetRef | None = None
 
 
 class ResourceSpec(BaseModel):
@@ -86,8 +89,9 @@ class Metadata(BaseModel):
 class ExperimentSpec(BaseModel):
     schema_version: Literal["v1"] = "v1"
     metadata: Metadata
-    dataset: DatasetRef
+    datasets: ExperimentDatasets
     tokenizer: TokenizerSpec
+    preparation: PreparationSpec = Field(default_factory=PreparationSpec)
     model: ModelSpec
     pretraining: TrainingSpec
     finetuning: FineTuneSpec = Field(default_factory=FineTuneSpec)

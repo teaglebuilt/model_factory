@@ -3,11 +3,18 @@ version: '3'
 tasks:
   install:
     cmds: ["uv sync --all-extras"]
+
   test:
     cmds: ["uv run pytest"]
+
   lint:
     cmds: ["uv run ruff check ."]
+
   validate:
+    cmds: ["uv run model-factory validate experiments/iteration-01/smoke-10m.yaml"]
+
+  validate-coder:
     cmds: ["uv run model-factory validate experiments/iteration-01/coder-150m.yaml"]
+
   dagster:
     cmds: ["uv run dagster dev -m apps.orchestrator.definitions"]
