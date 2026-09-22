@@ -1,16 +1,12 @@
 schema_version: v1
 
 metadata:
-  name: coder-150m-v001
-  description: Initial small coding foundation-model experiment.
+  name: smoke-10m-v001
+  description: Tiny smoke experiment used to validate the Model Factory execution path.
 
 datasets:
   pretraining:
-    uri: platform-data://foundation-models/code-pretrain@v1
-  instruction:
-    uri: platform-data://foundation-models/code-sft@v1
-  evaluation:
-    uri: platform-data://foundation-models/coding-eval@v1
+    uri: platform-data://foundation-models/code-pretrain@smoke-v1
 
 tokenizer:
   name: coder-v1
@@ -19,43 +15,43 @@ tokenizer:
 preparation:
   packing:
     strategy: concat
-    sequence_length: 4096
+    sequence_length: 1024
   shuffle: true
 
 model:
   family: llama
   architecture: models/architectures/llama.yaml
   parameters:
-    hidden_size: 768
-    num_layers: 12
-    num_attention_heads: 12
-    max_sequence_length: 4096
+    hidden_size: 256
+    num_layers: 4
+    num_attention_heads: 4
+    max_sequence_length: 1024
 
 pretraining:
   backend: torchtitan
   seed: 42
-  batch_size: 8
-  gradient_accumulation_steps: 8
+  max_steps: 100
+  batch_size: 2
+  gradient_accumulation_steps: 1
   optimizer:
     type: adamw
     learning_rate: 0.0003
     weight_decay: 0.1
   scheduler:
     type: cosine
-    warmup_steps: 1000
+    warmup_steps: 10
   checkpoints:
-    interval: 1000
+    interval: 50
 
 finetuning:
-  enabled: true
-  backend: trl
+  enabled: false
 
 runtime:
   queue: gpu
   resources:
     gpu: 1
-    cpu: 8
-    memory: 32Gi
+    cpu: 4
+    memory: 16Gi
 
 outputs:
   checkpoint_store: s3://model-factory/checkpoints
