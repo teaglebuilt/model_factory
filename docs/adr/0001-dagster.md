@@ -2,4 +2,13 @@
 
 Status: accepted
 
-Dagster owns application-level asset/job orchestration. Training backends remain independently executable and are not implemented inside Dagster ops.
+## Decision
+
+Use the shared Dagster deployment as the orchestration control plane for Model Factory.
+
+Production runs execute on Kubernetes. The Dagster `K8sRunLauncher` provides run isolation and
+`k8s_job_executor` provides step-level Kubernetes Jobs and per-step resource configuration.
+
+Model Factory does not implement a second Kubernetes scheduler or job state machine.
+
+Training engines remain independently executable and do not import Dagster.

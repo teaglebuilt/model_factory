@@ -1,0 +1,23 @@
+---
+apiVersion: model-factory.teaglebuilt.io/v1alpha1
+kind: Project
+metadata:
+  name: solaris
+spec:
+  description: >
+    World-building, simulation, narrative and multimodal model family.
+  datasets:
+    namespace: platform-data://solaris
+  registry:
+    namespace: solaris
+  defaults:
+    runtime:
+      class: nvidia
+    resources:
+      requests:
+        cpu: "4"
+        memory: 16Gi
+    checkpointStore:
+      uri: s3://model-factory/checkpoints/solaris
+    artifactStore:
+      uri: s3://model-factory/models/solaris
