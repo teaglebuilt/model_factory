@@ -1,26 +1,8 @@
-from pathlib import Path
+"""CLI shim — prefer `model-factory` / `model_factory.cli`."""
 
-import typer
-from rich import print
+from model_factory.cli import app
 
-from model_factory.specs.experiment import ExperimentSpec
-
-app = typer.Typer(no_args_is_help=True)
-
-
-@app.command()
-def validate(path: Path) -> None:
-    """Validate an experiment specification."""
-    spec = ExperimentSpec.from_yaml(path)
-    print(f"[green]valid[/green] {spec.metadata.name}")
-
-
-@app.command()
-def show(path: Path) -> None:
-    """Render the normalized experiment specification."""
-    spec = ExperimentSpec.from_yaml(path)
-    print(spec.model_dump_json(indent=2))
-
+__all__ = ["app"]
 
 if __name__ == "__main__":
     app()

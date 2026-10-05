@@ -60,11 +60,27 @@ individual steps in their own Jobs and apply per-step CPU/GPU resource requireme
 
 Model Factory does not contain a second Kubernetes scheduler.
 
+## Workspace layout
+
+This repo is a [uv workspace](https://docs.astral.sh/uv/concepts/projects/workspaces/). Python
+packages live under `packages/`; the root `pyproject.toml` is a virtual workspace root that owns
+the shared lockfile and virtualenv.
+
+| Path | Role |
+|------|------|
+| `packages/model_factory` | Core library (`model-factory`) |
+| `apps/` | Application entrypoints (CLI shim, Dagster, API) — not yet separate workspace members |
+| `uv.lock` | Shared lockfile for all workspace members |
+
 ## Local development
 
 ```bash
-uv sync --all-extras
-uv run model-factory validate experiments/iteration-01/smoke-10m.yaml
+uv sync --all-packages
+# optional ML stack (platform-dependent wheels):
+# uv sync --all-packages --extra training
+uv run model-factory --help
 uv run pytest
 uv run dagster dev -m apps.orchestrator.definitions
 ```
+
+Use `uv sync --frozen` in CI and Docker so installs match `uv.lock` exactly.

@@ -2,8 +2,12 @@
 __pycache__/
 .pytest_cache/
 .ruff_cache/
+.mypy_cache/
 .env
 *.pyc
+*.egg-info/
+dist/
+build/
 runs/
 artifacts/
 checkpoints/

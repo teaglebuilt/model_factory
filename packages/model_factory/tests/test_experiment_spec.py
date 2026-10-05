@@ -8,9 +8,8 @@ from model_factory.specs.experiment import ExperimentSpec
 
 
 def test_smoke_experiment_loads() -> None:
-    spec = ExperimentSpec.from_yaml(
-        Path("experiments/iteration-01/smoke-10m.yaml")
-    )
+    fixture = Path(__file__).resolve().parent / "fixtures" / "smoke-10m.yaml"
+    spec = ExperimentSpec.from_yaml(fixture)
 
     assert spec.metadata.name == "smoke-10m-v001"
     assert spec.datasets.pretraining.uri.startswith("platform-data://")
