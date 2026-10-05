@@ -1,0 +1,17 @@
+---
+apiVersion: model-factory.teaglebuilt.io/v1alpha1
+kind: Project
+metadata:
+  name: typesafe-ai
+spec:
+  description: >
+    Coding and software-engineering model family.
+  datasets:
+    namespace: platform-data://typesafe-ai
+  registry:
+    namespace: typesafe-ai
+  defaults:
+    runtime:
+      queue: gpu
+    evaluation:
+      suite: coding

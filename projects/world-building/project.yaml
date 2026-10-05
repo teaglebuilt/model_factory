@@ -1,0 +1,17 @@
+---
+apiVersion: model-factory.teaglebuilt.io/v1alpha1
+kind: Project
+metadata:
+  name: solaris
+spec:
+  description: >
+    World-building, simulation, narrative and multimodal model family.
+  datasets:
+    namespace: platform-data://solaris
+  registry:
+    namespace: solaris
+  defaults:
+    runtime:
+      queue: gpu
+    evaluation:
+      suite: world-consistency
