@@ -12,6 +12,12 @@ spec:
     namespace: typesafe-ai
   defaults:
     runtime:
-      queue: gpu
-    evaluation:
-      suite: coding
+      class: nvidia
+    resources:
+      requests:
+        cpu: "4"
+        memory: 16Gi
+    checkpointStore:
+      uri: s3://model-factory/checkpoints/typesafe-ai
+    artifactStore:
+      uri: s3://model-factory/models/typesafe-ai

@@ -1,0 +1,36 @@
+---
+apiVersion: ai.teaglebuilt.io/v1alpha1
+kind: Experiment
+metadata:
+  name: world-model-v1
+spec:
+  projectRef:
+    name: solaris
+  datasets:
+    pretraining:
+      uri: platform-data://solaris/world-scenes@v4
+    instruction:
+      uri: platform-data://solaris/world-instructions@v2
+  model:
+    architecture:
+      ref: catalog://qwen/2.5
+    parameters:
+      hiddenSize: 1024
+      numLayers: 24
+      maxSequenceLength: 8192
+  tokenizer:
+    ref: catalog://tokenizers/qwen
+  preparation:
+    packing:
+      strategy: concat
+      sequenceLength: 8192
+  training:
+    backend: torchtitan
+    optimizer:
+      type: adamw
+      learningRate: 0.0003
+    batchSize: 8
+    maxSteps: 20000
+  evaluation:
+    suiteRef:
+      name: solaris-world-quality

@@ -12,6 +12,12 @@ spec:
     namespace: solaris
   defaults:
     runtime:
-      queue: gpu
-    evaluation:
-      suite: world-consistency
+      class: nvidia
+    resources:
+      requests:
+        cpu: "4"
+        memory: 16Gi
+    checkpointStore:
+      uri: s3://model-factory/checkpoints/solaris
+    artifactStore:
+      uri: s3://model-factory/models/solaris
