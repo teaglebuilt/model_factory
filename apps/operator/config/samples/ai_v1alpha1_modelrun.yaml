@@ -1,0 +1,9 @@
+apiVersion: ai.teaglebuilt.io/v1alpha1
+kind: ModelRun
+metadata:
+  name: coder-smoke-001
+spec:
+  projectRef:
+    name: typesafe-ai
+  experimentRef:
+    name: coder-smoke

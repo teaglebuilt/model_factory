@@ -1,0 +1,17 @@
+apiVersion: ai.teaglebuilt.io/v1alpha1
+kind: ModelProject
+metadata:
+  name: typesafe-ai
+spec:
+  description: Coding and software-engineering model family.
+  datasetNamespace: platform-data://typesafe-ai
+  registryNamespace: typesafe-ai
+  defaults:
+    checkpointStore: s3://model-factory/checkpoints/typesafe-ai
+    artifactStore: s3://model-factory/models/typesafe-ai
+    runtime:
+      queue: gpu
+      resources:
+        gpu: 1
+        cpu: "4"
+        memory: 16Gi

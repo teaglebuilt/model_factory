@@ -1,0 +1,6 @@
+resources:
+- bases/ai.teaglebuilt.io_modelprojects.yaml
+- bases/ai.teaglebuilt.io_experiments.yaml
+- bases/ai.teaglebuilt.io_modelruns.yaml
+- bases/ai.teaglebuilt.io_modelartifacts.yaml
+- bases/ai.teaglebuilt.io_modelreleases.yaml

@@ -1,0 +1,33 @@
+apiVersion: ai.teaglebuilt.io/v1alpha1
+kind: Experiment
+metadata:
+  name: coder-smoke
+spec:
+  projectRef:
+    name: typesafe-ai
+  datasets:
+    pretraining:
+      uri: platform-data://typesafe-ai/code-pretrain@smoke-v1
+  model:
+    family: llama
+    architecture: models/architectures/llama.yaml
+    parameters:
+      hiddenSize: 256
+      numLayers: 4
+      numAttentionHeads: 4
+      maxSequenceLength: 1024
+  training:
+    backend: torchtitan
+    seed: 42
+    maxSteps: 100
+    batchSize: 2
+    gradientAccumulationSteps: 1
+    learningRate: 0.0003
+  runtime:
+    queue: gpu
+    resources:
+      gpu: 1
+      cpu: "4"
+      memory: 16Gi
+    nodeSelector:
+      nvidia.com/gpu.present: "true"

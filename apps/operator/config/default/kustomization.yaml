@@ -1,0 +1,8 @@
+namespace: model-factory-system
+
+namePrefix: model-factory-
+
+resources:
+- ../crd
+- ../rbac
+- ../manager

@@ -1,0 +1,18 @@
+apiVersion: ai.teaglebuilt.io/v1alpha1
+kind: ModelRelease
+metadata:
+  name: typesafe-coder-dev
+spec:
+  projectRef:
+    name: typesafe-ai
+  modelRef:
+    name: typesafe-coder-0-0-1
+  environment: dev
+  serving:
+    backend: vllm
+    replicas: 1
+    modelName: typesafe-coder
+    resources:
+      gpu: 1
+      cpu: "4"
+      memory: 16Gi

@@ -1,0 +1,54 @@
+# Code generated/scaffolded for Kubebuilder go/v4.
+cliVersion: 4.16.0
+domain: teaglebuilt.io
+layout:
+- go.kubebuilder.io/v4
+projectName: model-factory-operator
+repo: github.com/teaglebuilt/model_factory/operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: teaglebuilt.io
+  group: ai
+  kind: ModelProject
+  path: github.com/teaglebuilt/model_factory/operator/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: teaglebuilt.io
+  group: ai
+  kind: Experiment
+  path: github.com/teaglebuilt/model_factory/operator/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: teaglebuilt.io
+  group: ai
+  kind: ModelRun
+  path: github.com/teaglebuilt/model_factory/operator/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: teaglebuilt.io
+  group: ai
+  kind: ModelArtifact
+  path: github.com/teaglebuilt/model_factory/operator/api/v1alpha1
+  version: v1alpha1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: teaglebuilt.io
+  group: ai
+  kind: ModelRelease
+  path: github.com/teaglebuilt/model_factory/operator/api/v1alpha1
+  version: v1alpha1
+version: "3"

@@ -1,0 +1,14 @@
+apiVersion: ai.teaglebuilt.io/v1alpha1
+kind: ModelArtifact
+metadata:
+  name: typesafe-coder-0-0-1
+spec:
+  projectRef:
+    name: typesafe-ai
+  runRef:
+    name: coder-smoke-001
+  artifact:
+    uri: s3://model-factory/models/typesafe-ai/coder/0.0.1
+    digest: sha256:replace-me
+  format: huggingface
+  family: llama
